@@ -1,0 +1,412 @@
+# Episteme Framework - Complete Repository Structure
+
+This document provides a complete overview of the repository structure and what each file/directory contains.
+
+## 📂 Root Directory
+
+```
+episteme-framework/
+│
+├── README.md                          # Main documentation (see above)
+├── LICENSE                            # MIT License
+├── CONTRIBUTING.md                    # Contribution guidelines
+├── REPOSITORY_STRUCTURE.md            # This file
+├── .gitignore                         # Git ignore rules
+├── requirements.txt                   # Core dependencies
+├── requirements-dev.txt               # Development dependencies
+├── setup.py                           # Package installation script
+└── pyproject.toml                     # Modern Python project config
+```
+
+## 🧬 Core Framework (`episteme/`)
+
+```
+episteme/
+│
+├── __init__.py                        # Package initialization, exports
+├── agent.py                           # Main EpistemeAgent class
+│
+├── inference/                         # Bayesian inference engines
+│   ├── __init__.py
+│   ├── sbi_engine.py                 # Simulation-based inference (SNPE/SNLE)
+│   ├── variational.py                # Extended Kalman Filter
+│   └── posterior_ensemble.py         # Ensemble posterior handling
+│
+├── discovery/                         # Symbolic & causal discovery
+│   ├── __init__.py
+│   ├── symbolic_regression.py        # LASSO-based symbolic regression
+│   ├── differentiable_symbols.py     # Soft symbolic layers (Gumbel-Softmax)
+│   └── causal_discovery.py           # Causal graph learning (GFlowNets/NOTEARS)
+│
+├── evolution/                         # Evolutionary dynamics
+│   ├── __init__.py
+│   ├── genome.py                     # Genome representation & feature map φ_η
+│   ├── selection.py                  # Replicator-mutator dynamics
+│   └── internalization.py            # MI-based environment adaptation
+│
+├── babelfish/                        # Semantic encoding
+│   ├── __init__.py
+│   ├── encoder.py                    # Neural encoder/decoder
+│   └── information_bottleneck.py     # IB objective implementation
+│
+└── environments/                     # Simulation environments
+    ├── __init__.py
+    ├── logistic.py                   # 1D logistic population model
+    ├── pde_1d.py                     # 1D reaction-diffusion PDE
+    ├── ecosystem.py                  # Multi-species dynamics
+    └── turing.py                     # Turing pattern formation
+```
+
+## 🔬 Experiments (`experiments/`)
+
+```
+experiments/
+│
+├── 01_minimal_toy/                   # Document 1: PDE toy ecosystem
+│   ├── minimal_pde.py                # Full implementation
+│   ├── config.yaml                   # Experiment configuration
+│   ├── README.md                     # Experiment description
+│   └── results/                      # Saved outputs
+│       ├── figures/
+│       ├── data/
+│       └── logs/
+│
+├── 02_active_inference/              # Document 2: Full Episteme loop
+│   ├── active_learning.py            # Active inference implementation
+│   ├── config.yaml
+│   ├── README.md
+│   └── results/
+│
+├── 03_sbi_boed/                      # Document 3: SBI + BOED
+│   ├── sbi_experiment.py             # SBI with optimal design
+│   ├── config.yaml
+│   ├── README.md
+│   └── results/
+│
+└── 04_unified/                       # Hybrid architecture (all 3 combined)
+    ├── unified_episteme.py           # Full integrated framework
+    ├── config.yaml
+    ├── README.md
+    └── results/
+```
+
+## 📓 Tutorials (`notebooks/`)
+
+```
+notebooks/
+│
+├── 00_quickstart.ipynb               # 5-minute introduction
+├── 01_bayesian_inference.ipynb       # SBI vs variational filtering
+├── 02_symbolic_discovery.ipynb       # From LASSO to differentiable symbols
+├── 03_evolutionary_adaptation.ipynb  # Genome internalization
+├── 04_full_pipeline.ipynb            # End-to-end example
+├── 05_real_data_example.ipynb        # Applying to real biological data
+└── data/                             # Small datasets for tutorials
+    ├── synthetic_population.csv
+    └── morphogen_timeseries.npy
+```
+
+## 🧪 Tests (`tests/`)
+
+```
+tests/
+│
+├── __init__.py
+│
+├── test_inference.py                 # Test SBI and variational filtering
+├── test_discovery.py                 # Test symbolic regression
+├── test_evolution.py                 # Test evolutionary dynamics
+├── test_babelfish.py                 # Test semantic encoding
+├── test_environments.py              # Test simulation environments
+├── test_agent.py                     # Test EpistemeAgent integration
+│
+├── fixtures/                         # Test data and fixtures
+│   ├── __init__.py
+│   ├── sample_data.py
+│   └── mock_environments.py
+│
+└── integration/                      # Integration tests
+    ├── test_full_pipeline.py
+    └── test_experiments.py
+```
+
+## 📚 Documentation (`docs/`)
+
+```
+docs/
+│
+├── index.md                          # Documentation home
+├── theory.md                         # Mathematical framework
+├── installation.md                   # Installation guide
+│
+├── tutorials/                        # Step-by-step guides
+│   ├── 01_getting_started.md
+│   ├── 02_custom_environments.md
+│   ├── 03_advanced_inference.md
+│   └── 04_extending_framework.md
+│
+├── api/                              # API reference (auto-generated)
+│   ├── agent.md
+│   ├── inference.md
+│   ├── discovery.md
+│   └── evolution.md
+│
+├── examples/                         # Code examples
+│   ├── simple_inference.py
+│   ├── custom_simulator.py
+│   └── multi_objective.py
+│
+└── _static/                          # Images, CSS for docs
+    ├── logo.png
+    └── custom.css
+```
+
+## 🔧 Configuration Files
+
+### `.gitignore`
+
+```gitignore
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data & Results
+*.h5
+*.pkl
+*.npy
+results/
+outputs/
+logs/
+wandb/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+```
+
+### `requirements-dev.txt`
+
+```txt
+# Development dependencies
+pytest>=7.0.0
+pytest-cov>=3.0.0
+pytest-xdist>=2.5.0
+black>=22.0.0
+flake8>=4.0.0
+mypy>=0.950
+isort>=5.10.0
+
+# Documentation
+sphinx>=4.5.0
+sphinx-rtd-theme>=1.0.0
+sphinx-autodoc-typehints>=1.18.0
+myst-parser>=0.18.0
+
+# Notebook tools
+jupyter>=1.0.0
+jupyterlab>=3.4.0
+ipython>=8.0.0
+nbconvert>=6.5.0
+
+# Experiment tracking
+wandb>=0.12.0
+tensorboard>=2.9.0
+```
+
+### `pyproject.toml`
+
+```toml
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "episteme-framework"
+version = "0.1.0"
+description = "Active Bayesian Inference for Scientific Discovery"
+readme = "README.md"
+authors = [{name = "Your Name", email = "your.email@institution.edu"}]
+license = {text = "MIT"}
+requires-python = ">=3.8"
+keywords = ["bayesian-inference", "active-learning", "symbolic-regression", "scientific-discovery"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --cov=episteme --cov-report=html --cov-report=term"
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+```
+
+## 📦 Example Files
+
+### Quick Start Script (`examples/quickstart.py`)
+
+See the "Quick Start Example" artifact for the complete implementation.
+
+### Custom Environment (`examples/custom_environment.py`)
+
+```python
+"""Example: Creating a custom environment"""
+
+from episteme.environments import BaseEnvironment
+import numpy as np
+
+class CustomEnvironment(BaseEnvironment):
+    """Your custom environment implementation"""
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.state = self.initial_state()
+    
+    def step(self, action):
+        """Execute action and return observation"""
+        # Your dynamics here
+        self.state = self.dynamics(self.state, action)
+        return self.observe(self.state)
+    
+    def dynamics(self, state, action):
+        """Define state transition"""
+        # Implement your dynamics
+        return state
+    
+    def observe(self, state):
+        """Generate observation with noise"""
+        return state + np.random.normal(0, self.obs_noise)
+```
+
+## 🚀 Deployment & CI/CD
+
+### `.github/workflows/tests.yml`
+
+```yaml
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, '3.10']
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+    
+    - name: Run tests
+      run: pytest --cov=episteme tests/
+    
+    - name: Check formatting
+      run: |
+        black --check episteme/ tests/
+        flake8 episteme/ tests/
+```
+
+## 📊 Benchmarking
+
+```
+benchmarks/
+│
+├── benchmark_inference.py            # Compare SBI vs variational
+├── benchmark_symbolic.py             # Symbolic regression speed
+├── benchmark_scalability.py          # Large-scale tests
+└── results/                          # Benchmark results
+    └── figures/
+```
+
+## 🎯 Next Steps
+
+1. **Clone repository**:
+   ```bash
+   git clone https://github.com/yourusername/episteme-framework.git
+   ```
+
+2. **Setup environment**:
+   ```bash
+   cd episteme-framework
+   python -m venv venv
+   source venv/bin/activate
+   pip install -e ".[dev]"
+   ```
+
+3. **Run tests**:
+   ```bash
+   pytest tests/
+   ```
+
+4. **Try quickstart**:
+   ```bash
+   python examples/quickstart.py
+   ```
+
+5. **Read tutorials**:
+   - Open `notebooks/00_quickstart.ipynb`
+   - Follow step-by-step guides in `docs/tutorials/`
+
+---
+
+**Ready to contribute?** See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+**Questions?** Open an issue or discussion on GitHub!
